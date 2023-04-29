@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="col col-xl-6">
-    <div class="card" style="border-radius: 1rem;">
+    <div class="card shadow " style="border-radius: 1rem;">
       <div class="row g-0">
           <div class="p-4 p-lg-5 mx-auto">
             <form method="POST" action="/register">

@@ -3,7 +3,7 @@
 @section('container')
 
 <div class="col col-xl-10">
-    <div class="card overflow-hidden shadow-lg" style="border-radius: 1rem;">
+    <div class="card overflow-hidden shadow" style="border-radius: 1rem;">
         <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
                 <swiper-container class="mySwiper" autoplay-delay="2500" autoplay-disable-on-interaction="false" css-mode="true">

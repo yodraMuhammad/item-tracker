@@ -12,12 +12,16 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        return view('auth.login',[
+            'title' => 'Login - itemTracker',
+        ]);
     }
 
     public function register()
     {
-        return view('auth.register');
+        return view('auth.register',[
+            'title' => 'Register - itemTracker',
+        ]);
     }
 
     public function authenticate(Request $request)
@@ -30,13 +34,13 @@ class AuthController extends Controller
         if(Auth::attempt($validated)){
             if(auth()->user()->active == 1){
                 $request->session()->regenerate();
-                return redirect()->intended('/dashboard');
+                return redirect()->intended('/');
             }else{
-                return redirect('/login')->with('loginError','Account Not Active !');
+                return redirect('/login')->with('loginError','Account not active, please contact admin.');
             }
         }
 
-        return redirect('/login')->with('loginError','Login Failed !');
+        return redirect('/login')->with('loginError','Incorect username or password.');
     }
 
     public function logout()
@@ -61,6 +65,6 @@ class AuthController extends Controller
         $validated['password'] = Hash::make($validated['password']);
         User::create($validated);
 
-        return redirect('/login')->with('success', 'Registrasion Successfull!');
+        return redirect('/login')->with('success', 'Registrasion successfull !');
     }
 }

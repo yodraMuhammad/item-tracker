@@ -15,16 +15,17 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('login');
-});
+    return view('index');
+})->middleware('auth');
 
 // Route::get('/register', function () {
 //     return view('auth.register');
 // });
 
-// Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
-Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+// Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store']);
