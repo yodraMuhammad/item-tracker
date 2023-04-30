@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +16,14 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('dashboard.index');
 })->middleware('auth');
 
-// Route::get('/register', function () {
-//     return view('auth.register');
-// });
-
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
-// Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'store']);
+
+Route::resource('/dashboard/purchase', PurchaseController::class)->middleware('auth');
